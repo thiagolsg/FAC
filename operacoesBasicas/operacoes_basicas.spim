@@ -1,0 +1,119 @@
+	.data
+		numero1: .asciiz ""
+		numero2: .asciiz ""
+		resultado_soma: .asciiz "ADD: "
+		resultado_sub: .asciiz "\nSUB: "
+		resultado_and: .asciiz "\nAND: "
+		resultado_or: .asciiz "\nOR: "
+		resultado_xor: .asciiz "\nXOR: "
+		resultado_sll: .asciiz "\nSLL(3): "
+		resultado_srl: .asciiz "\nSRL(1): "
+		quebra_de_linha: .asciiz "\n"
+
+	.text
+main:
+
+	# Atribuição de variáveis
+	li $v0,4
+	la $a0,numero1
+	syscall 
+	
+	li $v0,5
+	syscall
+	
+	move $t0, $v0
+	
+	li $v0,4
+	la $a0, numero2
+	syscall
+	
+	li $v0,5
+	syscall
+	
+	move $t1, $v0
+	
+	# Adição 
+	li $v0, 4
+	la $a0, resultado_soma
+	syscall
+	
+	add $t2, $t0, $t1
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	# Subtração 
+	li $v0, 4
+	la $a0, resultado_sub
+	syscall
+	
+	sub $t2, $t0, $t1
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	# Porta And
+	li $v0, 4
+	la $a0, resultado_and
+	syscall
+	
+	and $t2, $t0, $t1
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	# OR
+	li $v0, 4
+	la $a0, resultado_or
+	syscall
+	
+	or $t2, $t0, $t1
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	# XOR
+	li $v0, 4
+	la $a0, resultado_xor
+	syscall
+	
+	xor $t2, $t0, $t1
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	#SLL
+	li $v0, 4
+	la $a0, resultado_sll
+	syscall
+	
+	sll $t2, $t0, 3
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	#SRL
+	li $v0, 4
+	la $a0, resultado_srl
+	syscall
+	
+	srl $t2, $t1, 1
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	# Quebra de linha
+	li $v0, 4
+	la $a0, quebra_de_linha
+	syscall
+		
+exit:
+	li $v0, 10
+	syscall
