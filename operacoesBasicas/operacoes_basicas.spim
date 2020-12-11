@@ -43,6 +43,13 @@ main:
 	la $a0, ($t2)
 	syscall
 	
+	#Multiplicação
+	mul $t2, $t0, $t1
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
 	# Subtração 
 	li $v0, 4
 	la $a0, resultado_sub
@@ -92,7 +99,7 @@ main:
 	la $a0, resultado_sll
 	syscall
 	
-	sll $t2, $t0, 3
+	sll $t2, $t0, 1
 	
 	li $v0, 1
 	la $a0, ($t2)
